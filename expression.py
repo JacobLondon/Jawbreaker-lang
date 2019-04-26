@@ -36,3 +36,6 @@ RETURN_RE = re.compile(f'^\s*({tok.RETURN})\s*(.*)\s*{tok.SEMICOLON}\s*$')
 
 # match a character to keep the line in pure python
 PYCALL_RE = re.compile(f'^\s*({tok.PYCALL})\s*(.*)\s*{tok.SEMICOLON}\s*$')
+
+# match a comment character
+COMMENT_RE = re.compile(f'^\s*({tok.COMMENT})(.*)$')

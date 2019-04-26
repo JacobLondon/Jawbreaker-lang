@@ -5,6 +5,7 @@ fn main() begin
 	print(out);
 end
 
+-- recursive fibonacci!
 fn fib(n) begin
 	if(n <= 1) begin
 		return 1;

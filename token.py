@@ -28,8 +28,9 @@ class tok():
     MODULUS         = '%'
     EQUAL           = '='
     PYCALL          = '`'
+    COMMENT         = '--'
 
-    # multi char symbol
+    # logic symbols
     LOGAND          = 'and'
     BITAND          = '&'
     LOGOR           = 'or'
@@ -40,6 +41,7 @@ class pytok():
     DEF             = 'def'
     ELSE            = 'else'
     RETURN          = 'return'
+    COMMENT         = '#'
 
     COLON           = ':'
     LPAREN          = '('

@@ -73,6 +73,9 @@ class Parser:
             elif PYCALL_RE.match(self.lexer.current):
                 self.convert_pycall()
 
+            elif COMMENT_RE.match(self.lexer.current):
+                self.convert_comment()
+
             self.py_program += '\n'
             self.lexer.advance()
 
@@ -190,3 +193,13 @@ class Parser:
         py_end = self.lexer.current.find(tok.SEMICOLON)
         py = self.lexer.current[py_start:py_end]
         self.py_program += py
+
+    def convert_comment(self):
+
+        self.py_program += pytok.COMMENT
+
+        comment_start = self.lexer.current.find(tok.COMMENT) + len(tok.COMMENT)
+        comment = self.lexer.current[comment_start:-2]
+        comment.replace('\n', EMPTY)
+
+        self.py_program += comment

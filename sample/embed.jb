@@ -1,0 +1,10 @@
+fn main() begin
+    a = True;
+    b = False;
+
+    if(any([a, b])) begin
+        print("It's cool to do this!");
+    end
+
+    `print("This whole line is a Python statement!");
+end

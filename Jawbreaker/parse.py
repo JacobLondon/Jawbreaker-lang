@@ -81,7 +81,7 @@ class Parser:
 
         self.py_program += '\n'
         self.py_program += 'main()'
-        #print(self.py_program)
+        print(self.py_program)
         return self.py_program
 
     # function definition
@@ -172,7 +172,7 @@ class Parser:
         self.py_program += SPACE
 
         # return statement
-        state_start = self.lexer.current.find(SPACE) + 1
+        state_start = self.lexer.current.find(tok.RETURN) + len(tok.RETURN)
         state_end = self.lexer.current.find(tok.SEMICOLON)
         state = self.lexer.current[state_start:state_end]
         self.py_program += state
@@ -199,7 +199,7 @@ class Parser:
         self.py_program += pytok.COMMENT
 
         comment_start = self.lexer.current.find(tok.COMMENT) + len(tok.COMMENT)
-        comment = self.lexer.current[comment_start:-2]
+        comment = self.lexer.current[comment_start:-1]
         comment.replace('\n', EMPTY)
 
         self.py_program += comment

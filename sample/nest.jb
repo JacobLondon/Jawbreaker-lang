@@ -1,0 +1,10 @@
+
+-- add one
+fn addOne(n) begin
+    return n + 1;
+end
+
+fn main() begin
+    a = addOne(addOne(1));
+    print(a);
+end

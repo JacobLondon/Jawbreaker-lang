@@ -1,0 +1,17 @@
+include datastructures as ds;
+
+fn main() begin
+
+    -- built in structures?
+    var dll = ds.DoublyLinkedList(head=5);
+    var lst = ds.List([1, 2, 3, 4]);
+    var tple = ds.Tuple([1, 2, 3, 4]);
+    var dictionary = ds.Dict();
+    var q = ds.Queue();
+    var d = ds.Deque();
+    var s = ds.Stack();
+    var t = ds.Tree();
+
+    -- also able to utilize python built-in functions
+
+end

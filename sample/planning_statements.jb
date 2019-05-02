@@ -1,6 +1,7 @@
 -- This file contains some of the information regarding the future of Jawbreaker-lang.
 
-include -- like an import statement
+-- like an import statement
+include Animal
 
 -- control statements
 fn control_flow() begin
@@ -54,29 +55,20 @@ fn control_flow() begin
     end
 end
 
-struct Dog begin
-    -- initialized values are static
+class Dog(Animal) begin
+    -- static variables
     str type = "Dog";
 
-    -- uninitialized values are public
-    str name;
-    int number;
-    var info;
-end
-
-impl Dog begin
-
     fn constructor(str name, int number, var info) begin
-        self.name = name;
-        self.number = number;
-        self.info = info;
+        str self.name = name;
+        int self.number = number;
+        var self.info = info;
     end
 
     -- the to string method is dog.type
     fn to_str() begin
         return Dog.type;
     end
-
 end
 
 -- enum, assign 0, 1, 2, 3, ...

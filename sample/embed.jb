@@ -1,11 +1,11 @@
 fn main() begin
-    a = True;
-    b = False;
+    a = True
+    b = False
 
     -- Python's any built in function used here!
     if(any([a, b])) begin
-        print("It's cool to do this!");
+        print("It's cool to do this!")
     end
     
-    `print("This whole line is a Python statement!");
+    `print("This whole line is a Python statement!")
 end

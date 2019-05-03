@@ -17,7 +17,12 @@ class tok():
     CONTINUE        = 'continue'
     BREAK           = 'break'
 
-    # 1 char symbol
+    # constants
+    TRUE            = 'true'
+    FALSE           = 'false'
+    NIL             = 'nil'
+
+    # symbols
     SEMICOLON       = ';'
     LPAREN          = '('
     RPAREN          = ')'
@@ -41,9 +46,16 @@ class pytok():
     DEF             = 'def'
     ELSE            = 'else'
     RETURN          = 'return'
-    COMMENT         = '#'
 
+    # constants
+    TRUE            = 'True'
+    FALSE           = 'False'
+    NONE            = 'None'
+
+    # symbols
+    COMMENT         = '#'
     COLON           = ':'
     LPAREN          = '('
     RPAREN          = ')'
+    EQUAL           = '='
 

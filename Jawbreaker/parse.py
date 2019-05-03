@@ -81,28 +81,30 @@ class Parser:
 
         self.py_program += '\n'
         self.py_program += 'main()'
-        #print(self.py_program)
+        print(self.py_program)
         return self.py_program
 
     # function definition
     def convert_function_definition(self):
 
-        # function definition
-        self.py_program += pytok.DEF
+        line = ''
+        # fn definition
+        line += pytok.DEF
+        line += SPACE
 
         # function name
-        fname_start = self.lexer.current.find(SPACE)
+        fname_start = self.lexer.current.find(tok.FN) + len(tok.FN)
         fname_end = self.lexer.current.find(tok.LPAREN)
-        fname = self.lexer.current[fname_start:fname_end]
-        self.py_program += fname
+        fname = self.lexer.current[fname_start:fname_end].lstrip()
+        line += fname
 
         # function args
-        self.py_program += pytok.LPAREN
-        args = self.bw_parens()
-        self.py_program += args
-        self.py_program += pytok.RPAREN
+        line += pytok.LPAREN
+        line += self.bw_parens()
+        line += pytok.RPAREN
+        line += pytok.COLON
 
-        self.py_program += pytok.COLON
+        self.py_program += line
 
         # look for begin
         self.chk_begin()
@@ -110,18 +112,23 @@ class Parser:
     # call to a function
     def convert_function_call(self):
 
+        line = ''
+
         # get function name
         fname_end = self.lexer.current.find(tok.LPAREN)
         fname = self.lexer.current[:fname_end].lstrip()
-        self.py_program += fname
+        line += fname
 
         # args between parentheses
-        self.py_program += pytok.LPAREN
-        args = self.bw_parens()
-        self.py_program += args
-        self.py_program += pytok.RPAREN
+        line += pytok.LPAREN
+        line += self.bw_parens()
+        line += pytok.RPAREN
+
+        self.py_program += line
 
     def convert_if(self):
+
+        line = ''
 
         # the word 'if'
         if_start = self.lexer.current.find(tok.IF)
@@ -142,8 +149,11 @@ class Parser:
     def convert_else(self):
 
         # the word 'else'
-        self.py_program += pytok.ELSE
-        self.py_program += pytok.COLON
+        line = ''
+        line += pytok.ELSE
+        line += pytok.COLON
+
+        self.py_program += line
         
         self.chk_begin()
 
@@ -151,31 +161,34 @@ class Parser:
     def convert_assignment(self):
 
         # variable name
+        line = ''
         var_name_end = self.lexer.current.find(tok.EQUAL)
         var_name = self.lexer.current[:var_name_end].lstrip()
-        self.py_program += var_name
+        line += var_name
 
         # apply assignment operator
-        self.py_program += tok.EQUAL
+        line += pytok.EQUAL
 
-        # statement between = and ;
+        # statement between = and
         statement_start = self.lexer.current.find(tok.EQUAL) + 1
-        statement_end = self.lexer.current.rfind(tok.SEMICOLON)
-        statement = self.lexer.current[statement_start:statement_end]
-        self.py_program += statement
+        statement = self.lexer.current[statement_start:].replace('\n', '')
+        line += statement
+
+        self.py_program += line
 
     # a return statement
     def convert_return(self):
 
         # return word
-        self.py_program += pytok.RETURN
-        self.py_program += SPACE
+        line = ''
+        line += pytok.RETURN
 
         # return statement
         state_start = self.lexer.current.find(tok.RETURN) + len(tok.RETURN)
-        state_end = self.lexer.current.find(tok.SEMICOLON)
-        state = self.lexer.current[state_start:state_end]
-        self.py_program += state
+        state = self.lexer.current[state_start:]
+        line += state
+
+        self.py_program += line
 
     # begin by itself
     def convert_begin(self):
@@ -189,17 +202,22 @@ class Parser:
     # put the python into the code
     def convert_pycall(self):
 
+        line = ''
         py_start = self.lexer.current.find(tok.PYCALL) + 1
-        py_end = self.lexer.current.find(tok.SEMICOLON)
-        py = self.lexer.current[py_start:py_end]
-        self.py_program += py
+        py = self.lexer.current[py_start:]
+        line += py
+        
+        self.py_program += line
 
     def convert_comment(self):
 
-        self.py_program += pytok.COMMENT
+        # convert comment
+        line = ''
+        line += pytok.COMMENT
 
         comment_start = self.lexer.current.find(tok.COMMENT) + len(tok.COMMENT)
         comment = self.lexer.current[comment_start:-1]
         comment.replace('\n', EMPTY)
 
-        self.py_program += comment
+        line += comment
+        self.py_program += line

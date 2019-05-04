@@ -7,52 +7,26 @@ include Animal
 fn control_flow() begin
     -- for loops
     for(i in range(1, 10)) begin
-        print(i);
+        print(i)
     end
 
     -- uses python stuff:
     for(i, val in enumerate(range(1, 10))) begin
-        print(i, val);
+        print(i, val)
     end
 
-    bool ready = true;
-
+    bool ready = true
+    
     -- while loops
     while(ready) begin
         break;
     end
 
-    float a = 1.3;
+    float a = 1.3
     if(a != 1.3) begin
-        return nil;
+        return nil
     end
 
-    -- similar to a switch statement
-    where(i) begin
-        -- python statements
-        (i > 10 and i < 20) begin
-            print("tens");
-        end
-        (i < 0) begin
-            print("negative");
-        end
-    end
-
-    -- similar to a switch statement
-    int i, j = 0;
-    match(i, j) begin
-        (0, 0) begin
-            print("zero");
-        end
-
-        (_, 0) begin
-            print("j is zero");
-        end
-
-        (0, _) begin
-            print("i is zero");
-        end
-    end
 end
 
 class Animal begin
@@ -63,22 +37,22 @@ end
 
 class Dog(Animal) begin
     -- static variables
-    str type = "Dog";
+    str type = "Dog"
 
     fn constructor(str name, int number, var info) begin
         super(name)
-        int self.number = number;
-        var self.info = info;
+        int self.number = number
+        var self.info = info
     end
 
     -- the to string method is dog.type
     fn to_str() begin
-        return Dog.type;
+        return Dog.type
     end
 end
 
 -- enum, assign 0, 1, 2, 3, ...
-enum example begin
+enum ex begin
     ZERO,
     ONE,
     TWO,
@@ -88,23 +62,23 @@ enum example begin
 end
 
 struct values begin
-    int a, b, c, d;
+    int a, b, c, d
 end
 
 fn main() begin
-    control_flow();
+    control_flow()
 
     -- similar to python with args then kwargs
-    d = Dog("Charlie", number=FIVE, info="Likes dog bones.");
+    d = Dog("Charlie", number=ex.FIVE, info="Likes dog bones.")
     -- will print Dog.type
-    print(d);
+    print(d)
 
-    vals = values(1, 2, 3, 4);
+    vals = values(1, 2, 3, 4)
     -- will print 1
-    print(vals.a);
+    print(vals.a)
 
     -- the program will exit
-    exit();
+    exit()
 
-    print("The program will never get here");
+    print("The program will never get here")
 end

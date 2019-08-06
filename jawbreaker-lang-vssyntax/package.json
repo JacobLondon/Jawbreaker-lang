@@ -1,0 +1,25 @@
+{
+    "name": "jb",
+    "displayName": "Jawbreaker",
+    "description": "Jawbreaker-lang support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.33.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "jawbreaker",
+            "aliases": ["Jawbreaker", "jawbreaker"],
+            "extensions": [".jb"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "jawbreaker",
+            "scopeName": "source.jb",
+            "path": "./syntaxes/jawbreaker.tmLanguage.json"
+        }]
+    }
+}

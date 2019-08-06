@@ -1,0 +1,81 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Jawbreaker",
+	"scopeName": "source.jb",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"comment": "numbers",
+			"match": "(\\d)+(\\.\\d)*",
+			"name" : "constant.numeric.jawbreaker"
+		},
+		{
+			"comment": "true and false",
+			"match": "(\\b(t|T)rue|(f|F)alse\\b)",
+			"name": "constant.language.jawbreaker"
+		},
+		{
+			"comment": "types",
+			"match": "\\b(var|int|float|str|bool)\\b",
+			"name": "storage.type.numeric.jawbreaker"
+		},
+		{
+			"comment": "function definition name",
+			"match": "(?<=fn\\s)[a-zA-Z_][a-zA-Z\\d_]*(?=\\()",
+			"name": "entity.name.function.jawbreaker"
+		}
+	],
+	"repository":{
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\b(fn|class|struct|enum|if|else|while|for|return|break|continue|where|match|include|in)\\b",
+					"name": "keyword.control.jawbreaker"
+				},
+				{
+					"match": "\\bbegin|end\\b",
+					"name": "keyword.other.jawbreaker"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.jawbreaker",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.jawbreaker",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name" : "comment.line",
+			"patterns" : [
+				{
+					"name": "comment.line.double-dash.jawbreaker",
+					"match": "(--).*"
+				}
+			]
+		},
+		"constant": {
+			"patterns": [
+				{
+					"name": "constant.numeric.jawbreaker",
+					"match": "(\\d)+(\\.\\d)*"
+				}
+			]
+		}
+	}
+}
